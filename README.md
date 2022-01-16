@@ -1,8 +1,5 @@
-# citrono
+# CITRONO.dev
 
-~~[https://citrono.dev](https://citrono.dev)~~(ドメインまだ取ってないんですよね)
-
-[https://citrono-lemon.github.io](https://citrono-lemon.github.io)
-
+[https://citrono.dev](https://citrono.dev)
 
 Powered by Next.js👀
