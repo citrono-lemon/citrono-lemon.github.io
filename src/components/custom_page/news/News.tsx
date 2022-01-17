@@ -13,6 +13,7 @@ import { Post } from '@/libs/api'
 interface Props {
   className?: string
   posts: Post[]
+  tag: string
 }
 
 /**
@@ -34,28 +35,49 @@ const getArticleSummary = (content: string, charMax: number = 128) => {
   return summary
 }
 
-const getThumbnail = (slug: string) => {
-  return `article/${slug}/thumbnail.png`
-}
 
-const News: React.FC<Props> = ({ posts }) => {
+const News: React.FC<Props> = ({ posts, tag }) => {
   const router = useRouter()
   const currentPage = router.pathname.split("/")[1] ?? ""
+  const currentPageExcludeQuery = router.basePath
+  const getArticlePage = (slug) => path.join("/", currentPage, "article", slug)
 
   return (
     <div className="bg-white shadow-md pt-10 animate-slideIn">
+
       {/* タイトル */}
-      <h1 className="text-5xl text-center"> News </h1>
+      <h1 className="text-5xl text-center">
+        <Link href={router.basePath}>
+          News
+        </Link>
+      </h1>
+
+      {/* タグ */}
+      {
+        tag ? (
+          <span className="text-gray-700 text-md ml-5 flex justify-start items-center pb-2">
+            <FaTags className="mr-1" />
+            {/* タグをGetクエリとして設定 */}
+            {tag}
+          </span>
+        ) : ""
+      }
+
 
       <div className="flex flex-col items-center py-10">
         <div className="md:max-w-3xl w-full">
+
           {/* 記事の一覧 */}
           {posts.map((post) => {
             return (
+
+              <div className="border-2">
+                {/* 
               <div className="border-2" key={"news-" + post.slug}>
+              */}
                 {/* タイトル */}
                 <div className=" pl-6 pt-4 items-center">
-                  <Link href={"/" + path.join(currentPage, post.slug)}>
+                  <Link href={getArticlePage(post.slug)}>
                     <a className="text-2xl underline hover:text-blue-800 visited:text-purple-600 transition duration-300">
                       {post.title}
                     </a>
@@ -64,7 +86,8 @@ const News: React.FC<Props> = ({ posts }) => {
 
                 {/* 本文 */}
                 <div className="px-5 py-4 md:flex flex-row">
-                  <Link href={"/" + path.join(currentPage, post.slug)}>
+                  {/* サムネイル */}
+                  <Link href={getArticlePage(post.slug)}>
                     <a>
                       <img
                         src={post.thumbnail != "" ? `/article/${post.slug}/${post.thumbnail}` : "/images/no_thumbnail.png"}
@@ -73,19 +96,21 @@ const News: React.FC<Props> = ({ posts }) => {
                       />
                     </a>
                   </Link>
+
+                  {/* 本文サマリ */}
                   <div className="md:pl-5 pl-1 md:pt-1 pt-3 max-w-xl">
                     {getArticleSummary(post.content)}
                   </div>
-                  {/*
-                  <div dangerouslySetInnerHTML={{ __html: remark().use(html).processSync(post.content).toString() }}></div>
-                  */}
                 </div>
 
-                {/* タグ */}
                 <div className="flex justify-between">
+                  {/* タグ */}
                   <span className="text-gray-700 text-md ml-5 flex justify-start items-center pb-2">
                     <FaTags className="mr-1" />
-                    {post.tags.join(" ")}
+                    {/* タグをGetクエリとして設定 */}
+                    {post.tags.map((v) => (
+                      <Link href={`?tag=${v}`}><a className="mx-0.5">{v}</a></Link>
+                    ))}
                   </span>
 
                   {/* 投稿日時 */}
@@ -99,7 +124,6 @@ const News: React.FC<Props> = ({ posts }) => {
           })}
         </div>
       </div>
-
     </div >
   )
 }

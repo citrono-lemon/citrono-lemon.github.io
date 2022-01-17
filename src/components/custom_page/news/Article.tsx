@@ -19,7 +19,12 @@ import { Post } from '@/libs/api'
 
 
 
-
+/**
+ * markdown内の
+ * ```
+ * ```
+ * で囲まれた部分をパースする
+ */
 const CodeBlock = ({ node, className, children, ...props }: CodeProps) => {
   // カスタム値の判定材料を抽出
   const prefix = "language-";
