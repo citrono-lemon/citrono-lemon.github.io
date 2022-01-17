@@ -22,7 +22,7 @@ const Navbar: React.FC<Props> = ({ className }) => {
 
           <div className="m-1 flex justify-center items-center">
             {linkList.map((l) => {
-              return (<Link href={"/" + l.page} key={"navbar-" + l.page}>
+              return (<Link href={"/" + l.page} key={l.page}>
                 <a className="mx-3">
                   {currentPage == l.page ?
                     (<span className="

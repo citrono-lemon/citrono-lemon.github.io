@@ -38,16 +38,16 @@ const getArticleSummary = (content: string, charMax: number = 128) => {
 
 const News: React.FC<Props> = ({ posts, tag }) => {
   const router = useRouter()
-  const currentPage = router.pathname.split("/")[1] ?? ""
+  const currentPage = "/" + router.pathname.split("/")[1] ?? "/"
   const currentPageExcludeQuery = router.basePath
-  const getArticlePage = (slug) => path.join("/", currentPage, "article", slug)
+  const getArticlePage = (slug) => path.join(currentPage, "article", slug)
 
   return (
     <div className="bg-white shadow-md pt-10 animate-slideIn">
 
       {/* タイトル */}
       <h1 className="text-5xl text-center">
-        <Link href={router.basePath}>
+        <Link href={currentPage}>
           News
         </Link>
       </h1>
@@ -70,11 +70,7 @@ const News: React.FC<Props> = ({ posts, tag }) => {
           {/* 記事の一覧 */}
           {posts.map((post) => {
             return (
-
-              <div className="border-2">
-                {/* 
-              <div className="border-2" key={"news-" + post.slug}>
-              */}
+              <div className="border-2" key={post.slug}>
                 {/* タイトル */}
                 <div className=" pl-6 pt-4 items-center">
                   <Link href={getArticlePage(post.slug)}>
@@ -109,14 +105,14 @@ const News: React.FC<Props> = ({ posts, tag }) => {
                     <FaTags className="mr-1" />
                     {/* タグをGetクエリとして設定 */}
                     {post.tags.map((v) => (
-                      <Link href={`?tag=${v}`}><a className="mx-0.5">{v}</a></Link>
+                      <Link key={v} href={`?tag=${v}`}><a className="mx-0.5">{v}</a></Link>
                     ))}
                   </span>
 
                   {/* 投稿日時 */}
                   <span className="text-gray-700 text-md mr-5 flex justify-end items-center pb-2">
                     <FaRegCalendarAlt className="mr-1" />
-                    {moment(post.date).format("YYYY/M/D hh:mm:ss")}
+                    {moment(post.date).format("YYYY/M/D HH:mm:ss")}
                   </span>
                 </div>
               </div>

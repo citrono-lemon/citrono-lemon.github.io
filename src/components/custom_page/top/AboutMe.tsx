@@ -35,9 +35,6 @@ const AboutMe: React.FC<Props> = ({ open, onClick }) => {
           </div>
         </div>
         ゲームを作るためにプログラミングと絵と音楽の勉強をしています。メインは多分フロントエンドエンジニアの何でも屋さんです。
-        <div>
-          aaa
-        </div>
         <DialogContentText id="alert-dialog-description">
         </DialogContentText>
       </DialogContent>
