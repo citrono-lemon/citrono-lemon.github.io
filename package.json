@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export": "next export",
+    "export": "next export -o ./docs && touch ./docs/.nojekyll && echo citrono.dev >> ./docs/CNAME",
     "start": "next start",
     "lint": "next lint"
   },
