@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import 'phaser'
 import { IonPhaser } from '@ion-phaser/react'
-import MainScene from './main';
+import MainScene from './main/main';
 import TitleScene from './title';
 
 const config: Phaser.Types.Core.GameConfig = {
