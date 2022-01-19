@@ -1,4 +1,4 @@
-import { TILE_SIZE } from "../environment"
+import { FIELD_OFFSET } from "../environment"
 import { Mino } from "./mino"
 
 /**
@@ -6,8 +6,10 @@ import { Mino } from "./mino"
  */
 export type FieldObj = 'None' | 'Block' | 'Wall' | 'TopPos'
 export class Field {
+  // 盤面は10x20だが、壁も含めて12x22とする
   static size = new Phaser.Geom.Rectangle(0, 0, 12, 24)
-  static offset = new Phaser.Math.Vector2(TILE_SIZE.width / 2 + 40, TILE_SIZE.height / 2)
+
+  static offset = FIELD_OFFSET
 
   private _field: FieldObj[][] = Array.from(new Array(Field.size.height), () => new Array(Field.size.width).fill("None"))
 
@@ -39,12 +41,33 @@ export class Field {
     return this._field
   }
 
+  /**
+   * 横一列にブロックが揃っているラインの確認
+   * @returns 全ブロックがそろっているラインの配列
+   */
   checkLine() {
     const lines = this._field
       .map((v, i) =>
         v.find((f) => f == "None") === undefined ? i : -1)
       .filter((f) => f != -1)
     return lines
+  }
+
+  removeLine(line: number) {
+    for (let y = line; y >= 0; y--) {
+      this._field[line].forEach((_, idx) => {
+        if (y >= 1) {
+          if (this._field[line - 1][idx] == 'Block' || this._field[line - 1][idx] == 'None') {
+            this._field[line][idx] = this._field[line - 1][idx]
+          }
+        }
+        else {
+          if (this._field[line - 1][idx] == 'Block' || this._field[line - 1][idx] == 'None') {
+            this._field[line][idx] = 'None'
+          }
+        }
+      })
+    }
   }
 
   /**

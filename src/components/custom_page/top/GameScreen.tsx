@@ -6,7 +6,7 @@ import { Tooltip } from '@material-ui/core'
 
 import dynamic from 'next/dynamic'
 const Game = dynamic(
-  () => import('../game/Game'),
+  () => import('../../game/Game'),
   { ssr: false }
 )
 

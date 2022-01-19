@@ -11,6 +11,12 @@ class MainScene extends Phaser.Scene {
   private _pointerText: Phaser.GameObjects.Text
   private _tetrimino: Mino = new Mino('O' as MinoType)
   private _field: Field = new Field()
+  private _state: State = new State()
+
+  private _score: number = 0
+  private _level: number = 1
+  private _lev_table: number[] =
+    [60, 55, 50, 45, 40, 35, 30, 27, 24, 21, 19, 17, 15, 14, 13, 12, 11, 10]
 
   private _objs: Phaser.GameObjects.Rectangle[] = []
 
@@ -19,9 +25,11 @@ class MainScene extends Phaser.Scene {
       key: 'Main',
     })
   }
+
   preload(): void {
     console.log('preload')
   }
+
   create(): void {
     this.cameras.main.fadeIn(700)
 
@@ -81,6 +89,14 @@ class MainScene extends Phaser.Scene {
       const current = this._tetrimino.move('Down', this._field).position
       if (prev == current) {
         this._field.put(this._tetrimino)
+
+        const lines = this._field.checkLine()
+        if (lines.length > 0) {
+          lines.sort((a, b) => b - a).forEach((v) => {
+            this._field.removeLine(v)
+          })
+        }
+
         const m: MinoType[] = ['I', 'O', 'S', 'Z', 'J', 'L', 'T']
         this._tetrimino = this._tetrimino = new Mino(
           m[Math.floor(Math.random() * m.length)] as MinoType
@@ -148,5 +164,24 @@ class MainScene extends Phaser.Scene {
 }
 
 
+type StateProp = 'Play' | 'Pause' | 'Animate'
+class State {
+  private _state: StateProp
+
+  private _stateGraph = [
+    [0, 1, 1],
+    [1, 0, 1],
+    [1, 1, 0]
+  ]
+
+  to(s: StateProp) {
+    this._state = s
+    return this
+  }
+
+  get state(): StateProp {
+    return this._state
+  }
+}
 
 export default MainScene
