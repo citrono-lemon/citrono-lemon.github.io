@@ -21,11 +21,13 @@ jobs:
         
       - name: Build
         run: yarn build
-      
+        env:
+          GITHUB_PAGES: true
+          
       - name: Export
         run: |
           yarn export
-          touch out/.nojekyll
+          touch ./out/.nojekyll
           cp CNAME out/
         
       - name: Deploy
