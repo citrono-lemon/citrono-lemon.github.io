@@ -1,4 +1,5 @@
 import 'phaser'
+// import '@azerion/phaser-spine'
 
 const TILE_SIZE = new Phaser.Geom.Rectangle(0, 0, 20, 20)
 // Board Sizeは10x20だが、壁も含めて12x22とする
@@ -10,10 +11,13 @@ class TitleScene extends Phaser.Scene {
     })
   }
   preload(): void {
+    // this.load.spine("aaa", "/images/Spine/sd_player.json", "/images/Spine/sd_player.atlas")
     console.log('preload')
   }
+
   create(): void {
-    console.log(this)
+
+
     this.add.rectangle(0, 0, this.cameras.main.width, this.cameras.main.height, 0x000000).setOrigin(0, 0)
 
     this.add.text(10, 10, "TETRIS", { fontSize: "32px" })
@@ -24,6 +28,8 @@ class TitleScene extends Phaser.Scene {
     this.add.text(10, 150, "S:テトリミノ下移動")
     this.add.text(10, 170, "SPACE: テトリミノ落下")
     this.add.text(10, 190, "E: 回転")
+
+    this.add.sprite(100, 200, "player")
 
 
     this.input.once('pointerdown', () => {

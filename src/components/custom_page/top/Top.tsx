@@ -51,7 +51,7 @@ const Top: React.FC = () => {
       </div>
 
       {/* ゲーム */}
-      {/* 
+      {/*
       <GameScreen />
       */}
 

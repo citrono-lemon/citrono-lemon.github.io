@@ -4,6 +4,9 @@ import { IonPhaser } from '@ion-phaser/react'
 import MainScene from './main/main';
 import TitleScene from './title';
 
+import SpinePlugin from 'phaser/plugins/spine/dist/SpinePlugin'
+
+
 const config: Phaser.Types.Core.GameConfig = {
   width: 300,
   height: 500,
@@ -19,6 +22,11 @@ const config: Phaser.Types.Core.GameConfig = {
   },
 
   scene: [TitleScene, MainScene],
+  plugins: {
+    scene: [
+      { key: 'SpinePlugin', plugin: SpinePlugin, mapping: 'spine' }
+    ]
+  }
 };
 class Tetris extends Phaser.Game {
   constructor(config: Phaser.Types.Core.GameConfig) {
