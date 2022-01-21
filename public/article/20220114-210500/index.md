@@ -10,7 +10,7 @@ Next.js+Typescript+Tailwindでホームページを作りました。
 Tailwindすごい使いやすい。
 
 GitHubにソースコードも置いているので、よければ是非。  
-[https://github.com/citrono-lemon/citrono](https://github.com/citrono-lemon/citrono)
+[https://github.com/citrono-lemon/citrono-lemon.github.io](https://github.com/citrono-lemon/citrono-lemon.github.io)
 
 # CITRONOについて
 エスペラント語(Esperanto)でレモン🍋を意味する言葉がCitronoです。
