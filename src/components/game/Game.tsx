@@ -4,7 +4,7 @@ import { IonPhaser } from '@ion-phaser/react'
 import MainScene from './main/main';
 import TitleScene from './title';
 
-import SpinePlugin from 'phaser/plugins/spine/dist/SpinePlugin'
+import 'phaser/plugins/spine/dist/SpinePlugin'
 
 
 const config: Phaser.Types.Core.GameConfig = {
@@ -24,7 +24,7 @@ const config: Phaser.Types.Core.GameConfig = {
   scene: [TitleScene, MainScene],
   plugins: {
     scene: [
-      { key: 'SpinePlugin', plugin: SpinePlugin, mapping: 'spine' }
+      { key: 'SpinePlugin', plugin: window.SpinePlugin, mapping: 'spine' }
     ]
   }
 };

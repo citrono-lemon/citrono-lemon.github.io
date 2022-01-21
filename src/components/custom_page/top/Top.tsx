@@ -7,6 +7,7 @@ import { SiPixiv, SiTwitter, SiSoundcloud, SiGithub } from 'react-icons/si'
 
 import AboutMe from './AboutMe'
 import GameScreen from './GameScreen'
+import { SpineObj } from '@/components/templates'
 
 
 const Top: React.FC = () => {
@@ -28,7 +29,10 @@ const Top: React.FC = () => {
       {/* タイトル */}
       <h1 className="text-5xl text-center"> CITRONO </h1>
 
+      <SpineObj width={150} height={150} />
+
       {/* アバター */}
+      {/*
       <div className="my-5 flex justify-center">
         <div className="bg-gray-100 shadow-md p-10">
           <img src="/images/author.png" alt="Author Profile" className="shadow-md w-32 h-32 rounded-full" />
@@ -49,12 +53,12 @@ const Top: React.FC = () => {
           </div>
         </div>
       </div>
+      */}
 
       {/* ゲーム */}
       {/*
       <GameScreen />
       */}
-
 
       {/* SNSリンク */}
       <div className="flex items-center mb-1 justify-center">

@@ -24,7 +24,15 @@
       "@*": [
         "src*"
       ]
-    }
+    },
+    "typeRoots": [
+      "@types",
+      "node_modules/@types",
+      "node_module/phaser/types"
+    ],
+    "types": [
+      "Phaser"
+    ]
   },
   "include": [
     "src",
