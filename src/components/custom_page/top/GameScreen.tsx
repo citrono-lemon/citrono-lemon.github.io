@@ -15,7 +15,7 @@ type Props = {
 }
 
 const GameScreen: React.FC<Props> = ({ className }) => {
-  const [gameScreenOpen, setGameScreenOpen] = React.useState<boolean>(true)
+  const [gameScreenOpen, setGameScreenOpen] = React.useState<boolean>(false)
   const [gameStartAnim, setGameStartAnim] = React.useState<boolean>(false)
 
   return (

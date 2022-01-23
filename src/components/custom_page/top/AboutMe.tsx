@@ -1,8 +1,9 @@
 import React from 'react'
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@material-ui/core'
 
-import { IoPerson } from 'react-icons/io5'
+import { IoPerson, IoMail } from 'react-icons/io5'
 import { FaMapMarkerAlt } from 'react-icons/fa'
+import { SpineObj } from '@/components/templates'
 
 type Props = {
   open: boolean,
@@ -31,6 +32,9 @@ const AboutMe: React.FC<Props> = ({ open, onClick }) => {
             </div>
             <div className="flex items-center">
               <FaMapMarkerAlt className="text-md" /> 滋賀県
+            </div>
+            <div className="flex items-center">
+              <IoMail className="text-md" /> contact@citrono.dev
             </div>
           </div>
         </div>

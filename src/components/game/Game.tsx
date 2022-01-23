@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import 'phaser'
+// import 'phaser'
 import { IonPhaser } from '@ion-phaser/react'
 import MainScene from './main/main';
 import TitleScene from './title';
 
-import SpinePlugin from 'phaser/plugins/spine/dist/SpinePlugin'
+import 'phaser/plugins/spine/dist/SpinePlugin'
+import { useRouter } from 'next/router';
 
 
 const config: Phaser.Types.Core.GameConfig = {
@@ -37,7 +38,12 @@ class Tetris extends Phaser.Game {
 
 const Game: React.FC<{ className?: string }> = ({ className }) => {
   useEffect(() => {
-    const game = new Tetris(config)
+    // setGame(new Tetris(config))
+    const g = new Tetris(config)
+    return () => {
+      g?.plugins.removeScenePlugin('SpinePlugin')
+      g?.destroy(true)
+    }
   }, []);
   return (
     <div id="game" className={className}>

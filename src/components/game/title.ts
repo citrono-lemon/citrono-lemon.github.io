@@ -11,12 +11,15 @@ class TitleScene extends Phaser.Scene {
     })
   }
   preload(): void {
-    // this.load.spine("aaa", "/images/Spine/sd_player.json", "/images/Spine/sd_player.atlas")
+    // this.load.spine("player")
+    this.load.setPath('/images/Spine/')
+    this.load.image("pp", "sd_player.png")
+    this.load.spine("player", "sd_player.json", ["sd_player.atlas"], true)
+    //this.load.spine("aaa", "boy.json", "boy.atlas")
     console.log('preload')
   }
 
   create(): void {
-
 
     this.add.rectangle(0, 0, this.cameras.main.width, this.cameras.main.height, 0x000000).setOrigin(0, 0)
 
@@ -29,7 +32,8 @@ class TitleScene extends Phaser.Scene {
     this.add.text(10, 170, "SPACE: テトリミノ落下")
     this.add.text(10, 190, "E: 回転")
 
-    this.add.sprite(100, 200, "player")
+    //this.add.sprite(200, 400, "pp")
+    this.add.spine(100, 200, "player", "Idle", true).setScale(0.25, 0.25)
 
 
     this.input.once('pointerdown', () => {
