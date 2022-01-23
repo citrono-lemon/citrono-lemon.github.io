@@ -29,10 +29,9 @@ const Top: React.FC = () => {
       {/* タイトル */}
       <h1 className="text-5xl text-center"> CITRONO </h1>
 
-      <SpineObj width={150} height={150} />
+      <SpineObj width={150} height={150} className="fixed right-0 md:bottom-10 bottom-30" />
 
       {/* アバター */}
-      {/*
       <div className="my-5 flex justify-center">
         <div className="bg-gray-100 shadow-md p-10">
           <img src="/images/author.png" alt="Author Profile" className="shadow-md w-32 h-32 rounded-full" />
@@ -53,10 +52,9 @@ const Top: React.FC = () => {
           </div>
         </div>
       </div>
-      */}
 
       {/* ゲーム */}
-      {/*
+      {/* 
       <GameScreen />
       */}
 

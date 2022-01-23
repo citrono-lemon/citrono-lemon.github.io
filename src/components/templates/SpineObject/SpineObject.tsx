@@ -1,75 +1,109 @@
-import React, { useEffect, useState } from 'react'
-import 'phaser'
-import { IonPhaser } from '@ion-phaser/react'
+import React, { useEffect } from 'react'
+import { Spine } from 'pixi-spine'
 
-import 'phaser/plugins/spine/dist/SpinePlugin'
+import * as PIXI from 'pixi.js'
+import { Ticker } from 'pixi.js'
 
-class TitleScene extends Phaser.Scene {
-  constructor() {
-    super({
-      key: 'Title',
-    })
-  }
-  preload(): void {
-    this.cameras.main.setBackgroundColor('rgba(255, 0, 0, 0.3)');
-
-    // this.load.spine("player")
-    this.load.setPath('/images/Spine/')
-    this.load.spine("spineboy", "boy.json", "boy.atlas")
-  }
-
-  create(): void {
-    const player = this.add.spine(100, 100, "spineboy", "idle", true).setScale(0.2, 0.2)
-    player.setMix("idle", "walk", 0.3)
-    player.setMix("walk", "idle", 0.3)
-
-    this.input.on('pointerdown', () => {
-      console.log("Scene change")
-      player.setAnimation(0, "walk",)
-      player.on("complete", () => {
-        player.setAnimation(0, "idle", true)
-      })
-    })
-  }
-
+type Props = {
+  className?: string
+  id?: string
+  width: number
+  height: number
 }
 
-const config: Phaser.Types.Core.GameConfig = {
-  width: 200,
-  height: 200,
-  type: Phaser.AUTO,
-  pixelArt: false,
-  transparent: true,
-  input: false,
-
-  scale: {
-    mode: Phaser.Scale.FIT,
-    //mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT,
-    autoCenter: Phaser.Scale.CENTER_VERTICALLY,
-    parent: 'spineObj',
-  },
-
-  scene: [TitleScene],
-  plugins: {
-    scene: [
-      { key: 'SpinePlugin', plugin: window.SpinePlugin, mapping: 'spine' }
-    ]
-  }
-};
-class PhaserSpine extends Phaser.Game {
-  constructor(config: Phaser.Types.Core.GameConfig) {
-    super(config);
-  }
-}
-
-
-const SpineObject: React.FC<{ className?: string }> = ({ className }) => {
+/**
+ * 
+ */
+const SpineObject: React.FC<Props> = ({ className, id, width, height }) => {
   useEffect(() => {
-    const game = new PhaserSpine(config)
+    const app = new PIXI.Application({
+      "width": width * 1,
+      "height": height * 2,
+      "backgroundAlpha": 0,
+      "antialias": false
+    })
+
+
+    app.stage.interactive = true;
+    document.getElementById(`SpineModel${id}`).appendChild(app.view)
+
+    app.loader
+      .add("spineCharactor", "/images/Spine/sd_player.json")
+      .load((loader, resources) => {
+        let anim = new Spine(resources.spineCharactor.spineData)
+
+        anim.x = app.screen.width / 2
+        anim.y = app.screen.height
+
+        anim.buttonMode = true
+        anim.cursor = "pointer"
+
+        anim.scale.set(1)
+        anim.scale.x *= -1
+        anim.state.timeScale = 0
+        anim.state.setAnimation(0, "Idle2", true)
+
+        // アニメーションの遷移時間設定
+        const duration = 0.05
+        anim.stateData.setMix("Idle", "Jump", duration)
+        anim.stateData.setMix("Idle2", "Jump", duration)
+        anim.stateData.setMix("Jump", "Idle", duration)
+        anim.stateData.setMix("Jump", "Idle2", duration)
+
+        // Pixi描写キャンバスのアペンド
+        app.stage.addChild(anim)
+
+        // キャラクターにポイントオーバーしてから初めて動く
+        app.stage.once("pointerover", () => {
+          anim.state.timeScale = 1
+          anim.state.setAnimation(0, "Idle2", true)
+        })
+        let jumping = false
+
+        // キャラクタータッチ後にジャンプする
+        app.stage.on("pointerdown", () => {
+          anim.state.timeScale = 1
+          if (jumping) return
+          jumping = true
+
+          anim.state.setAnimation(0, "Jump", true)
+
+          let time = 0;
+          const gravity = 0.8
+          const power = 15
+          let jumpAt = anim.y
+
+          const tick = deltaMs => {
+            const jumpHeight = (-gravity / 2) * Math.pow(time, 2) + power * time;
+
+            if (jumpHeight < 0) {
+              jumping = false;
+              Ticker.shared.remove(tick);
+              anim.y = jumpAt;
+              if (Math.random() > 0.1) {
+                anim.state.setAnimation(0, "Idle2", true)
+              }
+              else {
+                anim.state.setAnimation(0, "Idle", true)
+              }
+              return;
+            }
+            anim.y = jumpAt + (jumpHeight * -1);
+            time += deltaMs;
+          }
+          Ticker.shared.add(tick);
+        })
+      })
+    return () => {
+      app?.destroy(true)
+    }
   }, []);
+
+
   return (
-    <div id="spineObj" className={className}>
-    </div >
+    <div id={`SpineModel${id}`} className={className}>
+
+    </div>
   )
 }
 
