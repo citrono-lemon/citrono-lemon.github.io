@@ -13,6 +13,7 @@
     "@material-ui/core": "^4.12.3",
     "gray-matter": "^4.0.3",
     "moment": "^2.29.1",
+    "phaser": "^3.55.2",
     "next": "12.0.4",
     "pixi-spine": "^3.0.13",
     "pixi.js": "^6.2.1",
@@ -33,7 +34,6 @@
     "autoprefixer": "^10.4.0",
     "eslint": "7",
     "eslint-config-next": "12.0.4",
-    "phaser": "^3.55.2",
     "postcss": "^8.3.11",
     "tailwindcss": "^2.2.19",
     "typescript": "^4.5.2"
