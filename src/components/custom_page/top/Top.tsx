@@ -54,7 +54,9 @@ const Top: React.FC = () => {
       </div>
 
       {/* ゲーム */}
+      {/* 
       <GameScreen />
+      */}
 
       {/* SNSリンク */}
       <div className="flex items-center mb-1 justify-center">
