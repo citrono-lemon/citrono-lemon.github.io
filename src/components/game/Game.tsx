@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 // import 'phaser'
-import { IonPhaser } from '@ion-phaser/react'
 import MainScene from './main/main';
 import TitleScene from './title';
 
 import 'phaser/plugins/spine/dist/SpinePlugin'
-import { useRouter } from 'next/router';
 
 
 const config: Phaser.Types.Core.GameConfig = {
