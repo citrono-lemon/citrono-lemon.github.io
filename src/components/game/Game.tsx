@@ -7,15 +7,14 @@ import 'phaser/plugins/spine/dist/SpinePlugin'
 
 
 const config: Phaser.Types.Core.GameConfig = {
-  width: 300,
-  height: 500,
+  width: 640,
+  height: 384,
   type: Phaser.AUTO,
   pixelArt: false,
   backgroundColor: 0xcdcdcd,
 
   scale: {
     mode: Phaser.Scale.FIT,
-    //mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT,
     autoCenter: Phaser.Scale.CENTER_VERTICALLY,
     parent: 'game',
   },
