@@ -20,7 +20,7 @@ const postsDirectory = path.join(process.cwd(), "public/article")
 export function getPostSlugs(): string[] {
   const dirents = fs.readdirSync(postsDirectory, { withFileTypes: true })
   return dirents
-    .filter((dir) => dir.isDirectory() && !v.name.includes("draft"))
+    .filter((dir) => dir.isDirectory() && !dir.name.includes("draft"))
         .map((v) => v.name)
 }
 
