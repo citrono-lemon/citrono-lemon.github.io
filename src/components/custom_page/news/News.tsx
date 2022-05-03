@@ -43,7 +43,7 @@ const News: React.FC<Props> = ({ posts, tag }) => {
   const getArticlePage = (slug) => path.join(currentPage, "article", slug)
 
   return (
-    <div className="bg-white shadow-md pt-10 animate-slideIn">
+    <div className="bg-white shadow-md pt-10">
 
       {/* タイトル */}
       <h1 className="text-5xl text-center">

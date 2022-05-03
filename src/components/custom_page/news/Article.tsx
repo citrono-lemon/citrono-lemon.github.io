@@ -63,7 +63,7 @@ const Article: React.FC<Props> = ({ post }) => {
   const currentPage = router.pathname.split("/")[1] ?? ""
 
   return (
-    <div className="bg-white shadow-md md:pt-10 pt-3 animate-slideIn">
+    <div className="bg-white shadow-md md:pt-10 pt-3">
       {/* パンくずリスト */}
       <Breadcrumbs separator=">" className="pl-10">
         <Link href={"/" + "news"}><a>

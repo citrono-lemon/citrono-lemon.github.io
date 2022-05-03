@@ -8,7 +8,7 @@ interface Props {
 const Works: React.FC<Props> = ({ className }) => {
 
   return (
-    <div className="bg-white shadow-md p-10 animate-slideIn">
+    <div className="bg-white shadow-md p-10">
       {/* タイトル */}
       <h1 className="text-5xl text-center"> Works </h1>
 
