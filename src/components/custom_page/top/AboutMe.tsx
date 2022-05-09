@@ -34,7 +34,7 @@ const AboutMe: React.FC<Props> = ({ open, onClick }) => {
               <FaMapMarkerAlt className="text-md" /> 滋賀県
             </div>
             <div className="flex items-center">
-              <IoMail className="text-md" /> contact@citrono.dev
+              <IoMail className="text-md" /> citrono.lemon@gmail.com
             </div>
           </div>
         </div>
