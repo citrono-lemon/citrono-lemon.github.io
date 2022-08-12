@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import Footer from './Footer'
 import Navbar from './Navbar/Navbar'
+import { url } from 'inspector'
 
 type Props = {
   title?: string
@@ -17,10 +18,10 @@ const Layout: React.FC<Props> = ({ children, title = "" }) => {
       </Head>
 
 
-      <div className='flex flex-col min-h-screen bg-gray-100'>
-        <Navbar />
-        <main className='flex-grow md:p-10 p-1'> {children} </main>
-        <Footer />
+      <div className='flex flex-col min-h-screen'>
+        {/* <Navbar /> */}
+        <main className='flex-grow' style={{ backgroundImage: "url(/images/lemon.jpg)", backgroundSize: "cover", backgroundPosition: "center center" }}> {children} </main>
+        {/* <Footer /> */}
       </div>
     </>
   )

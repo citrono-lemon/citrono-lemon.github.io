@@ -8,7 +8,8 @@ module.exports = {
       animation: {
         slideIn: "slideIn 1s ease-out forwards",
         openExpand: "expand 1s ease-out forwards",
-        openGame: "open 1s ease-in-out forwards"
+        fadeIn: "open 1s ease-in-out forwards",
+        transitAnim: "transitAnim 2s ease-in-out forwards"
       },
       keyframes: {
         slideIn: {
@@ -44,6 +45,18 @@ module.exports = {
             opacity: 1,
             transform: "scale(1,1)",
           },
+        },
+        transitAnim: {
+          "0%": {
+            opacity: 1,
+            transform: "scale(1,1)",
+          },
+          "70%": {
+            opacity: 1,
+          },
+          "100%": {
+            opacity: 0,
+          }
         }
       },
     },
