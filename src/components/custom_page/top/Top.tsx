@@ -14,13 +14,17 @@ const Top: React.FC = () => {
     <div ref={bodyRef} style={{ backgroundImage: "url(public/lemon.png)" }}>
 
 
-      <div className="flex items-center justify-center h-screen  bg-white bg-opacity-75">
-        <AboutMe />
+      <div className=" bg-white bg-opacity-75 flex items-center justify-center h-screen">
+        <div className="justify-center  text-4xl">
+
+        </div>
+        <div className="">
+          <AboutMe />
+        </div>
       </div>
-      <SpineObj width={150} height={150} className="fixed right-0 bottom-10 md:bottom-1/3 md:right-1/4 animate-fadeIn" />
-      <div className="fixed right-1/2 top-10 md:top-1/3 text-4xl">
-        CITRONO
-      </div>
+
+      <SpineObj width={150} height={150} className="fixed -right-8 top-0 md:top-1/3 lg:right-1/4 animate-fadeIn" />
+
 
       <footer className="fixed bottom-0 w-full">
         <p className="p-2 text-center text-lg"> © 2021- レモン/CITRONO.</p>
