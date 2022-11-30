@@ -12,13 +12,12 @@ const Top: React.FC = () => {
 
   return (
     <div ref={bodyRef} style={{ backgroundImage: "url(public/lemon.png)" }}>
-
-
       <div className=" bg-white bg-opacity-75 flex items-center justify-center h-screen">
         <div className="justify-center  text-4xl">
 
         </div>
         <div className="">
+          {/* <GameScreen /> */}
           <AboutMe />
         </div>
       </div>

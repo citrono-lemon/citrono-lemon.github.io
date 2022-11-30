@@ -46,10 +46,14 @@ export class Field {
    * @returns 全ブロックがそろっているラインの配列
    */
   checkLine() {
+    const yLen = this._field.length
+    // 一列どこにもNone(-1)のない列目が対象
+    // ただし1～3行目、最終行目はチェック対象外にする
     const lines = this._field
       .map((v, i) =>
         v.find((f) => f == "None") === undefined ? i : -1)
-      .filter((f) => f != -1)
+      .filter((f) => f != -1 && f > 2 && f < yLen - 1)
+
     return lines
   }
 

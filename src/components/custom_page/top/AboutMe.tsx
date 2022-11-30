@@ -21,7 +21,7 @@ const AboutMe: React.FC<Props> = ({ }) => {
   return (
 
     <div className="md:flex items-center justify-center bg-white bg-opacity-60 rounded-3xl py-6 md:px-10">
-      <img src="images/author.jpg" alt="Author Profile" className="shadow-md w-32 h-32 rounded-full" />
+      <img src="images/author.png" alt="Author Profile" className="shadow-md w-32 h-32 rounded-full" />
       <div className="flex-col justify-center px-3 py-5">
         <div className="flex items-center">
           <IoPerson className="mr-1" /> レモン

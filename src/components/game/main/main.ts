@@ -88,6 +88,7 @@ class MainScene extends Phaser.Scene {
       const prev = this._tetrimino.position
       const current = this._tetrimino.move('Down', this._field).position
       if (prev == current) {
+        console.log(this._field)
         this._field.put(this._tetrimino)
 
         const lines = this._field.checkLine()
@@ -159,7 +160,6 @@ class MainScene extends Phaser.Scene {
         }
       })
     })
-
   }
 }
 
